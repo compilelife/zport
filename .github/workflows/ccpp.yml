@@ -10,8 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: prepare googltest
-      run: cd test; git clone https://github.com/google/googletest ; cd -
+      run: cd test; git clone https://github.com/google/googletest
     - name: configure
       run: mkdir build;cd build;cmake .. -DBUILD_TEST=1 -DREADER=file
     - name: make
-      run: make
+      run: cd build;make
