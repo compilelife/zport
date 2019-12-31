@@ -47,6 +47,8 @@ public:
         auto len = reader->size();
         cout<<"media total size: "<<len<<endl;
         if (len > 0){
+            //本来应该使用set_content_provider，但是set_content_provider后取不到Done，无法在出错时通知到httplib
+            //所以这里通过修改私有字段content_length，配合set_chunked_content_provider，实现了带Done参数的set_content_provider概念
             res.set_chunked_content_provider(
                 [reader](size_t offset, DataSink sink, Done done){
                     reader->read(offset, sink, [&done](int info){

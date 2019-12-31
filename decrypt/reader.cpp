@@ -54,7 +54,7 @@ public:
         }while((size_t)(pbuf - buf)<ret);
     }
 
-    //这里顺带演示下由server多次调用read，被动传数据的情况
+    //server每次调用read，推送256*KEY_LEN的数据
     void read(int64_t offset, 
             std::function<void(const char *data, size_t data_len)> dataSink,
             std::function<void(int info)> notify) {

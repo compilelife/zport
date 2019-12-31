@@ -34,6 +34,7 @@ public:
     void read(int64_t offset, 
             std::function<void(const char *data, size_t data_len)> dataSink,
             std::function<void(int info)> notify) {
+        //这里我们演示如何在一次read中把所有数据推送
         const int bufSize = 4096;
         char buf[bufSize];
 
