@@ -4,7 +4,7 @@
 using namespace std;
 using namespace httplib;
 
-class MediaReader : IMediaReader{
+class MediaReader : public IMediaReader{
     FILE* mFp;
 public:
     bool open(const httplib::Request& req, 

@@ -4,6 +4,7 @@
 #include "httplib.h"
 #include <string>
 #include <functional>
+#include <cstdarg>
 
 #define READER_EOF 1    //目前只对size()返回-1时有效
 #define READER_ERROR 2
@@ -15,8 +16,21 @@
  * “媒体资源”主要要定义的行为有open/close/read/size
  */
 class IMediaReader{
+private:
+    std::string mId;
 public:
     virtual ~IMediaReader(){}
+
+    void setId(int id){
+        mId = std::to_string(id);
+    }
+    void log(const char* format, ...){
+        va_list args;
+        auto fmt = "["+mId+"] "+format +"\n";
+        va_start(args, format);
+        vprintf(fmt.c_str(), args);
+        va_end(args);
+    }
 public:
     /**
      * 打开媒体资源

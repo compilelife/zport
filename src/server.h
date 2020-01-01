@@ -1,6 +1,8 @@
 #ifndef SERVER_H
 #define SERVER_H
 
+#include <functional>
+
 class ZPortServerImpl;
 
 /**

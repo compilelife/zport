@@ -4,7 +4,7 @@
 using namespace std;
 using namespace httplib;
 
-class MediaReader : IMediaReader{
+class MediaReader : public IMediaReader{
     FILE* mFp;
     int64_t mSize;
     int64_t mEndPos;
