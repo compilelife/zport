@@ -96,3 +96,11 @@ cmake支持的参数：
 虽然是共性需求，但每个需求中的服务器不同，对于转换的实现不同，性能要求不同，都会在很大程度上影响如何实现。也是要花精力去设计和调优，example不一定能覆盖所有需求。参考第三点，如果出了代码质量问题，这锅zport不背
 
 鉴于以上4点（和作者的私心），如果有需要http MediaReader example的，可以到这里购买支持作者：https://mianbaoduo.com/o/bread/Yp2alZY=
+
+# 如何代理远程服务器的加密视频，给本地任意播放器播放？
+
+这也是本项目的创建初衷。
+
+解决方法也不难，只需要在上一节的http MediaReader的基础上整合decrypt reader的解密代码，就可以实现功能了。
+
+如果需要代码，也可以直接在这里下载：https://mianbaoduo.com/o/bread/mbd-Yp2alZo=
