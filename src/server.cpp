@@ -36,7 +36,7 @@ public:
         mHttpServer.stop();
     }
 
-    void onNewMediaRequest(const Request& req, Response& res){
+    void onNewMediaRequest(const httplib::Request& req, Response& res){
         shared_ptr<MediaReader> reader(new MediaReader);
         auto path = req.get_param_value("path");
         int64_t from = 0;
@@ -63,7 +63,7 @@ public:
         }
 
         auto len = reader->size();
-        reader->log("total size: %" PRId64, len);
+        reader->log("content_length: %" PRId64, len);
         if (len > 0){
             //本来应该使用set_content_provider，但是set_content_provider后取不到Done，无法在出错时通知到httplib
             //所以这里通过修改私有字段content_length，配合set_chunked_content_provider，实现了带Done参数的set_content_provider概念

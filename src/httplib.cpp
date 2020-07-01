@@ -962,10 +962,14 @@ ssize_t write_content(Stream &strm,
         [&](const char *d, size_t l) {
           offset += l;
           written_length = strm.write(d, l);
+          if (written_length < 0) {
+            printf("[write_content]stream write failed, client may close it\n");
+          }
         },
         [&](void) { written_length = -1; });
     if (written_length < 0) { return written_length; }
   }
+  printf("[write_content]done with offset=%lu, end_offset=%lu\n", offset, end_offset);
   return static_cast<ssize_t>(offset - begin_offset);
 }
 
@@ -1790,7 +1794,7 @@ int SocketStream::read(char *ptr, size_t size) {
 }
 
 int SocketStream::write(const char *ptr, size_t size) {
-  return send(sock_, ptr, static_cast<int>(size), 0);
+  return send(sock_, ptr, static_cast<int>(size), MSG_NOSIGNAL);
 }
 
 int SocketStream::write(const char *ptr) {
